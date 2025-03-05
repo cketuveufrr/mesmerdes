@@ -1,0 +1,50 @@
+<argos>
+  <!-- Définition de l'arène (monde de simulation) -->
+  <arena id="arena" size="10,10,2">
+    <!-- Vous pouvez ajouter ici des obstacles ou des textures de sol si nécessaire -->
+  </arena>
+  
+  <!-- Fichier média pour les textures (exemple pour Mercator) -->
+  <media file="media/mercator_texture.png" id="mercator_texture" />
+
+  <!-- Déclaration des fonctions de boucle (loop functions) pour étendre la simulation -->
+  <loop_functions library="libmercator_loop_functions.so" />
+
+  <!-- Déclaration du contrôleur pour Mercator -->
+  <controller id="mercator_controller" library="libmercator_controller.so">
+    <!-- Vous pouvez spécifier ici des paramètres spécifiques au contrôleur, par exemple : -->
+    <param name="exploration_mode" value="random_walk"/>
+    <param name="slam_enabled" value="true"/>
+    <param name="communication_range" value="3.0"/>
+  </controller>
+
+  <!-- Définition d'un robot (ici, un foot-bot représentant un Mercator) -->
+  <footbot id="mercator_1">
+    <!-- Association du contrôleur au robot -->
+    <controller_config id="mercator_controller">
+      <!-- Paramètres propres au robot si besoin -->
+      <param name="max_linear_speed" value="0.5"/>
+      <param name="max_angular_speed" value="1.0"/>
+    </controller_config>
+    <!-- Position initiale dans l'arène -->
+    <position x="1.0" y="1.0" z="0.1" />
+    <!-- Orientation initiale (en degrés ou en radians selon la configuration) -->
+    <orientation roll="0" pitch="0" yaw="0" />
+    <!-- Vous pouvez définir ici d'autres configurations, par exemple les capteurs ou LEDs -->
+  </footbot>
+
+  <!-- Vous pouvez ajouter plusieurs robots pour simuler un essaim -->
+  <footbot id="mercator_2">
+    <controller_config id="mercator_controller" />
+    <position x="3.0" y="1.0" z="0.1" />
+    <orientation roll="0" pitch="0" yaw="1.57" />
+  </footbot>
+
+  <footbot id="mercator_3">
+    <controller_config id="mercator_controller" />
+    <position x="1.0" y="3.0" z="0.1" />
+    <orientation roll="0" pitch="0" yaw="3.14" />
+  </footbot>
+  
+  <!-- Autres éléments peuvent être ajoutés selon vos besoins -->
+</argos>
